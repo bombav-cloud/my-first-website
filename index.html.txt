@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>ตารางการใช้ห้องประชุม โรงพยาบาลอรัญประเทศ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--ink:#f3f6fd;--mute:#9db0d0;--glass:rgba(12,20,44,.58);--line:rgba(255,255,255,.14);--ok:#22c55e;--ok2:#16a34a;--bad:#ef4444;--bad2:#b91c1c;--gold:#ffc46b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;height:100%;color:var(--ink);font-family:"Noto Sans Thai",system-ui,sans-serif;overflow:hidden;
+background:radial-gradient(ellipse at 15% 110%,rgba(255,140,60,.38),transparent 55%),radial-gradient(ellipse at 90% 105%,rgba(150,80,230,.38),transparent 50%),linear-gradient(180deg,#081022 0%,#0f1b3b 55%,#1b1a3d 100%)}
+body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:34%;z-index:0;pointer-events:none;opacity:.55;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cg fill='%23050a18'%3E%3Crect x='0' y='120' width='70' height='80'/%3E%3Crect x='80' y='70' width='50' height='130'/%3E%3Crect x='140' y='100' width='90' height='100'/%3E%3Crect x='240' y='40' width='45' height='160'/%3E%3Crect x='300' y='90' width='80' height='110'/%3E%3Crect x='400' y='60' width='60' height='140'/%3E%3Crect x='470' y='110' width='100' height='90'/%3E%3Crect x='590' y='30' width='40' height='170'/%3E%3Crect x='640' y='80' width='70' height='120'/%3E%3Crect x='730' y='105' width='90' height='95'/%3E%3Crect x='830' y='55' width='55' height='145'/%3E%3Crect x='900' y='95' width='80' height='105'/%3E%3Crect x='995' y='45' width='45' height='155'/%3E%3Crect x='1050' y='110' width='150' height='90'/%3E%3C/g%3E%3C/svg%3E") bottom/100% 100% no-repeat}
+.app{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:clamp(12px,2vw,36px);gap:clamp(10px,1.6vw,26px)}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.clock{font-size:clamp(34px,6vw,96px);font-weight:300;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.date{font-size:clamp(14px,1.7vw,28px);color:var(--mute);margin-top:6px}
+.ttl{font-size:clamp(18px,2.6vw,46px);font-weight:300;text-align:right;line-height:1.25}
+.ttl b{font-weight:800}
+.ttl span{display:block;font-size:.66em;color:var(--gold);margin-top:2px}
+.rooms{flex:1;min-height:0;display:grid;grid-template-columns:1fr;grid-auto-rows:minmax(0,1fr);gap:clamp(10px,1.4vw,22px)}
+@media (orientation:landscape) and (min-width:900px){.rooms.all{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(0,1fr)}}
+.room{display:flex;flex-direction:column;min-height:0;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.rn{padding:clamp(14px,1.8vw,30px) clamp(16px,2vw,34px) 6px;font-size:clamp(22px,2.6vw,46px);font-weight:600;line-height:1.2}
+.rn small{font-weight:300;color:var(--mute);margin-left:.4em;font-size:.6em}
+.single .rn{font-size:clamp(30px,5vw,88px);font-weight:300}
+.list{flex:1;min-height:0;overflow:hidden;padding:clamp(6px,1vw,16px) clamp(16px,2vw,34px);display:flex;flex-direction:column;gap:clamp(8px,1vw,16px)}
+.m{display:grid;grid-template-columns:minmax(7.2em,auto) 1fr;gap:clamp(10px,1.6vw,28px);align-items:center;padding:clamp(8px,1vw,16px) 0 clamp(8px,1vw,16px) clamp(10px,1.2vw,18px);border-left:4px solid rgba(255,255,255,.22);border-radius:4px}
+.m .t{font-size:clamp(17px,1.9vw,34px);font-weight:600;font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+.m .s{font-size:clamp(17px,2vw,36px);font-weight:400;overflow-wrap:anywhere}
+.single .m .t{font-size:clamp(20px,2.4vw,44px)}.single .m .s{font-size:clamp(22px,2.8vw,52px)}
+.m.now{border-left-color:var(--bad);background:linear-gradient(90deg,rgba(239,68,68,.22),transparent)}
+.m.now .t,.m.now .s{color:#fff}.m.now .s{font-weight:600}
+.m.soon{border-left-color:var(--gold)}.m.soon .t{color:var(--gold)}
+.m.done{opacity:.38}
+.none{margin:auto;color:var(--mute);font-weight:300;font-size:clamp(18px,2vw,34px);text-align:center}
+.bar{padding:clamp(14px,1.8vw,30px) clamp(16px,2vw,34px);display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(135deg,var(--ok),var(--ok2))}
+.bar.busy{background:linear-gradient(135deg,var(--bad),var(--bad2))}
+.bar .a{font-size:clamp(24px,3vw,56px);font-weight:800;line-height:1.1}
+.single .bar .a{font-size:clamp(34px,5.2vw,96px)}
+.bar .b{font-size:clamp(14px,1.5vw,26px);text-align:right;opacity:.95;line-height:1.3}
+.gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);right:10px;z-index:5;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.06);color:var(--mute);font-size:20px;cursor:pointer;opacity:.35}
+.gear:hover,.gear:focus{opacity:1}
+#admin{display:none;position:fixed;inset:0;z-index:6;background:rgba(5,10,24,.86);overflow:auto;padding:max(20px,env(safe-area-inset-top,0px)) 20px 30px}
+#admin.on{display:block}
+.pn{max-width:900px;margin:0 auto;background:#121c38;border:1px solid var(--line);border-radius:18px;padding:20px}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+label{display:flex;flex-direction:column;font-size:14px;color:var(--mute);gap:4px}
+input,select{font:inherit;padding:9px;border-radius:8px;border:1px solid var(--line);background:#0b1328;color:var(--ink)}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#1b2850;color:var(--ink);border-radius:10px;padding:8px 16px}
+button.p{background:#2f6fe8;border-color:#2f6fe8;font-weight:600}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding:8px 0;font-size:15px}
+.msg{color:#ff8a80;font-size:14px;margin-top:8px}
+.views a{color:var(--gold);margin-right:14px;font-size:15px}
+.nav{display:flex;gap:8px;margin-top:12px;align-items:center;opacity:.7}
+.nav button{padding:6px 16px;font-size:clamp(14px,1.4vw,22px);background:rgba(255,255,255,.08)}
+.nav input{padding:6px 10px;font-size:clamp(14px,1.4vw,22px)}
+.bar.plain{background:linear-gradient(135deg,#3a67c4,#223f85)}
+</style>
+</head>
+<body>
+<button class="gear" id="tg" aria-label="จัดการ">&#9881;</button>
+<div class="app">
+  <header>
+    <div><div class="clock" id="clock"></div><div class="date" id="date"></div><div class="nav"><button id="pv" aria-label="วันก่อนหน้า">&#9664;</button><button id="td">กลับวันนี้</button><button id="nx" aria-label="วันถัดไป">&#9654;</button><input type="date" id="pk"></div></div>
+    <div class="ttl" id="ttl"><b>ตารางการใช้ห้องประชุม</b><span>โรงพยาบาลอรัญประเทศ</span></div>
+  </header>
+  <main class="rooms all" id="rooms"></main>
+</div>
+<section id="admin"><div class="pn">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0;font-weight:600">จัดการตารางประชุม</h2><button id="cl">ปิด</button></div>
+  <div class="views" style="margin-bottom:14px">มุมมองหน้าจอ: <a href="#all">ทั้ง 3 ห้อง</a><a href="#gab">GAB</a><a href="#dir">ผู้อำนวยการ</a><a href="#adm">กลุ่มงานบริหาร</a></div>
+  <div class="f">
+    <label>วันที่<input type="date" id="fd"></label>
+    <label>ห้องประชุม<select id="fr"></select></label>
+    <label>เวลาเริ่ม<input type="time" id="fs"></label>
+    <label>เวลาจบ<input type="time" id="fe"></label>
+  </div>
+  <label style="margin-top:10px">เรื่องที่ประชุม<input id="ft" placeholder="เช่น ประชุมคณะกรรมการประจำเดือน"></label>
+  <div style="margin-top:12px"><button class="p" id="add">บันทึกการประชุม</button> <span id="st" style="color:var(--mute);font-size:14px"></span></div>
+  <div class="msg" id="msg"></div>
+  <h3 style="margin:18px 0 4px;font-weight:600">รายการที่กำลังจะถึง</h3>
+  <div id="up"></div>
+</div></section>
+<script>
+const ROOMS=[
+ {id:"gab",name:"Grand Aran Ballroom",sub:"(GAB)",full:"ห้องประชุม Grand Aran Ballroom (GAB)"},
+ {id:"dir",name:"ห้องประชุมผู้อำนวยการ",sub:"",full:"ห้องประชุมผู้อำนวยการ"},
+ {id:"adm",name:"ห้องประชุมกลุ่มงานบริหาร",sub:"",full:"ห้องประชุมกลุ่มงานบริหาร"}
+];
+let all=[],col=null,viewDate=null,idle=null;
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,"0");
+const key=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function view(){const h=(location.hash||"").slice(1);return ROOMS.find(r=>r.id===h)?h:"all"}
+function render(){
+  const now=new Date(),real=key(now),today=viewDate||real,isToday=today===real,hm=pad(now.getHours())+":"+pad(now.getMinutes()),v=view();
+  $("clock").textContent=hm;
+  const [yy,mm,dd]=today.split("-").map(Number);$("date").textContent=new Date(yy,mm-1,dd).toLocaleDateString("th-TH",{weekday:"long",day:"numeric",month:"long",year:"numeric"});$("pk").value=today;$("td").style.visibility=isToday?"hidden":"visible";
+  const rs=v==="all"?ROOMS:ROOMS.filter(r=>r.id===v);
+  
+  const box=$("rooms");box.className="rooms "+(v==="all"?"all":"single");
+  box.innerHTML=rs.map(r=>{
+    const ms=all.filter(m=>m.date===today&&m.room===r.id).sort((a,b)=>a.start.localeCompare(b.start));
+    const t=isToday?hm:(today<real?"24:00":"00:00");const cur=ms.find(m=>t>=m.start&&t<m.end),nxt=ms.find(m=>m.start>t);
+    const body=ms.length?ms.map(m=>{
+      let c="soon";if(t>=m.end)c="done";else if(t>=m.start)c="now";
+      return `<div class="m ${c}"><div class="t">${m.start} - ${m.end}</div><div class="s">${esc(m.topic)}</div></div>`;
+    }).join(""):`<div class="none">ไม่มีการประชุม</div>`;
+    let a,b="";const pl=!isToday;
+    if(pl){a=ms.length?ms.length+" รายการ":"ไม่มีประชุม"}else if(cur){a="ไม่ว่าง";b=`กำลังประชุม<br>ถึง ${cur.end} น.`}
+    else{a="ว่าง";b=nxt?`ประชุมถัดไป<br>${nxt.start} น.`:"ว่างตลอดวัน"}
+    return `<section class="room"><div class="rn">${r.name}<small>${r.sub}</small></div><div class="list">${body}</div><div class="bar ${pl?"plain":cur?"busy":""}"><div class="a">${a}</div><div class="b">${b}</div></div></section>`;
+  }).join("");
+  const up=all.filter(m=>m.date>=real).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
+  $("up").innerHTML=up.length?up.map(m=>`<div class="row"><span>${m.date} ${m.start}-${m.end} · ${ROOMS.find(r=>r.id===m.room)?.name||""} · ${esc(m.topic)}</span><button data-id="${m.id}">ลบ</button></div>`).join(""):`<div class="row" style="color:var(--mute)">ยังไม่มีรายการ</div>`;
+}
+$("fr").innerHTML=ROOMS.map(r=>`<option value="${r.id}">${r.full}</option>`).join("");
+$("fd").value=key(new Date());
+function go(d){viewDate=d===key(new Date())?null:d;clearTimeout(idle);if(viewDate)idle=setTimeout(()=>{viewDate=null;render()},90000);render()}
+function shift(n){const b=viewDate||key(new Date()),[y,m,d]=b.split("-").map(Number);go(key(new Date(y,m-1,d+n)))}
+$("pv").onclick=()=>shift(-1);$("nx").onclick=()=>shift(1);$("td").onclick=()=>go(key(new Date()));
+$("pk").onchange=e=>{if(e.target.value)go(e.target.value)};
+addEventListener("keydown",e=>{if(e.target.tagName==="INPUT")return;if(e.key==="ArrowLeft")shift(-1);if(e.key==="ArrowRight")shift(1)});
+$("tg").onclick=()=>$("admin").classList.add("on");
+$("cl").onclick=()=>$("admin").classList.remove("on");
+window.addEventListener("hashchange",()=>{render()});
+$("add").onclick=async()=>{
+  const m={date:$("fd").value,room:$("fr").value,start:$("fs").value,end:$("fe").value,topic:$("ft").value.trim()};
+  const msg=$("msg");msg.textContent="";
+  if(!m.date||!m.start||!m.end||!m.topic){msg.textContent="กรุณากรอกข้อมูลให้ครบ";return}
+  if(m.end<=m.start){msg.textContent="เวลาจบต้องมากกว่าเวลาเริ่ม";return}
+  if(!col){msg.textContent="ยังไม่ได้เชื่อมต่อฐานข้อมูล";return}
+  try{await col.add(m);$("ft").value=""}catch(e){msg.textContent="บันทึกไม่ได้ (ไม่มีสิทธิ์แก้ไข)"}
+};
+$("up").onclick=async e=>{
+  const id=e.target.dataset&&e.target.dataset.id;
+  if(!id||!col||!confirm("ลบรายการนี้?"))return;
+  try{await col.doc(id).delete()}catch(err){$("msg").textContent="ลบไม่ได้ (ไม่มีสิทธิ์แก้ไข)"}
+};
+render();setInterval(render,20000);
+(async()=>{
+  try{
+    const db=await claude.use("db");
+    if(!db){$("st").textContent="ยังไม่ได้เชื่อมต่อฐานข้อมูล";return}
+    col=db.collection("meetings");
+    col.onSnapshot(s=>{all=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{$("st").textContent="โหลดข้อมูลไม่สำเร็จ"});
+  }catch(e){$("st").textContent="ยังไม่ได้เชื่อมต่อฐานข้อมูล"}
+})();
+</script>
+</body>
+</html>
